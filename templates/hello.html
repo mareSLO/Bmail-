@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Inbox - {{ user }}{% endblock title %}
+
+{% block active1 %}active{% endblock active1 %}
+
+{% block content %}
+
+    <div class="container">
+        {% if logged_in %}
+
+            <a href="/send"><button>Create mail</button></a>
+
+            <h1>My Inbox</h1>
+            <div class="mail-margin-top">
+                {% for mail in bmail %}
+
+                    <div class="panel panel-default mail-margin">
+                      <div class="panel-body mail-hover">
+                          From: {{ mail.from_user }}
+                          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/mail/{{ mail.key.id() }}">{{ mail.subject }}</a>
+                          <span class="text-right">{{ mail.created.strftime("%d.%m.%Y") }}</span>
+                      </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        {% else %}
+
+            <h1>Please login</h1>
+
+        {% endif %}
+    </div>
+
+{% endblock content %}

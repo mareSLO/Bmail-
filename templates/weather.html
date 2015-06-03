@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Weather - {{ user }}{% endblock title %}
+
+{% block active3 %}active{% endblock active3 %}
+
+{% block content %}
+
+    <div class="container">
+
+        {% if logged_in %}
+
+
+        <h1>Weather</h1>
+
+        <div class="mail-background">
+            <div class="mail-position">
+
+                <p><b>Town:</b> {{ weather.name }}</p>
+                <p><b>Temp:</b> (°C): {{ weather.main.temp }}</p>
+                <p><b>Description:</b> {{ weather.weather[0].description }}</p>
+
+            </div>
+        </div>
+
+
+        {% else %}
+
+            <h1>Please login</h1>
+
+        {% endif %}
+
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="Keywords" content="bmail">
+    <meta name="author" content="Marko Velkavrh">
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/js/jquery-1.11.3.min"></script>
+    <script src="/assets/js/bootstrap.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Fake Gmail</a>
+        </div>
+
+      {% if logged_in %}
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <h4 class="navbar-text">Signed in as {{ user }}</h4>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="{% block active1 %}{% endblock active1 %}"><a href="/">Inbox</a></li>
+            <li class="{% block active2 %}{% endblock active2 %}"><a href="/sent">Sent mail</a></li>
+            <li class="{% block active3 %}{% endblock active3 %}"><a href="/weather">Weather</a></li>
+            <li><a href="{{ logout_url }}">Logout</a></li>
+          </ul>
+        </div>
+
+      {% else %}
+
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ login_url }}">Login</a></li>
+          </ul>
+        </div>
+
+      {% endif %}
+
+      </div>
+    </nav>
+</div>
+
+    {% block content %}
+    {% endblock content %}
+
+</body>
+</html>
